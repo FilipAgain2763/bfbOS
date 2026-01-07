@@ -56,6 +56,7 @@ namespace bfbOS
                     Console.WriteLine("Reboot not available in this environment.");
                 }
             });
+            cmd.Register("fourfetch", "Gets system information.", args => { Console.WriteLine("SYSTEM: bfbOS v0.2/nFOURFETCH VER: 0.1beta"); });
 
             // Example: how to add your own command
             // cmd.Register("greet", "Greet the user", args => { Console.WriteLine("Hello from bfbOS!"); });
