@@ -12,11 +12,9 @@ namespace bfbOS
         {
             Console.Clear();
 
-            // Load boot message: prefer 0:\BootMessage.txt, fallback to BootConfig.DefaultBootMessage
             string bootMessage = BootConfig.DefaultBootMessage;
             try
             {
-                // If you have a mounted drive in Cosmos, it's usually accessible like "0:\"
                 if (File.Exists(@"0:\BootMessage.txt"))
                 {
                     bootMessage = File.ReadAllText(@"0:\BootMessage.txt");
@@ -24,20 +22,16 @@ namespace bfbOS
             }
             catch (Exception)
             {
-                // ignore; keep default
             }
 
-            // Print boot message line by line
             foreach (var line in bootMessage.Replace("\r", "").Split('\n'))
             {
                 Console.WriteLine(line);
             }
             Console.WriteLine();
-
-            // Initialize command manager and register commands
+            
             cmd = new CommandManager();
 
-            // Built-in commands (examples)
             cmd.Register("help", "Show available commands", args => { cmd.PrintHelp(); });
             cmd.Register("echo", "Echo arguments back", args =>
             {
@@ -58,8 +52,6 @@ namespace bfbOS
             });
             cmd.Register("fourfetch", "Gets system information.", args => { Console.WriteLine("SYSTEM: bfbOS v0.2/nFOURFETCH VER: 0.1beta"); });
 
-            // Example: how to add your own command
-            // cmd.Register("greet", "Greet the user", args => { Console.WriteLine("Hello from bfbOS!"); });
         }
 
         protected override void Run()
