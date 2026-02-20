@@ -50,7 +50,10 @@ namespace bfbOS
                     Console.WriteLine("Reboot not available in this environment.");
                 }
             });
-            cmd.Register("fourfetch", "Gets system information.", args => { Console.WriteLine("SYSTEM: bfbOS v0.2/nFOURFETCH VER: 0.1beta"); });
+            cmd.Register("fourfetch", "Gets system information.", args => { Console.WriteLine("SYSTEM: bfbOS v0.2/nFOURFETCH VER: 0.1beta");         public static uint GetAmountOfRAM()
+        {
+            return Multiboot2.GetMemUpper() / 1024;
+        } });
 
         }
 
